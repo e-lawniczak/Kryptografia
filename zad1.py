@@ -30,3 +30,5 @@ if __name__ == '__main__':
     d, y, x = e_gcd(n, b)
     print("NWD({},{}) = {} = {} * {} + {} * {}".format(n, b, d, n, x, b, y))
     print("Elementem odwrotnym do {} w grupie mod {} jest: {}".format(b, n, x % n))
+    print((b * x%n) % n)
+
