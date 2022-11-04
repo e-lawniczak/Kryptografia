@@ -15,11 +15,12 @@ def pow(x, k, n):
 
 
 if __name__ == '__main__':
-    X = random.randint(2 ** 127, 2 ** 128)
-    # X = 18080300741509232066952834824682
-    X = 3
-    N = int(input("Podaj n (dziesietne): "))
-    K = int(input("Podaj k (dziesietne): "))
-    print(X)
-    y = pow(X, K, N)
+    B = random.randint(2 ** 127, 2 ** 128)
+
+    N = int(input("Podaj n: "))
+    B = int(input("Podaj b: "))
+    K = int(input("Podaj k: "))
+    print(B)
+#    y = pow(B, K, N)
+    y = pow(1088, 16, 17)
     print(y)
