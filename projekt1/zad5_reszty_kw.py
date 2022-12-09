@@ -1,5 +1,5 @@
-from zad2_pow import pow
-from zad4_euler import euler
+from projekt1.zad2_pow import bin_pow
+from projekt1.zad4_euler import euler
 
 
 def sqr(b, p):
@@ -9,9 +9,9 @@ def sqr(b, p):
     :param p: liczba pierwsza
     :return: x p-x: reszty kwadratowe lub False, False gdy b nie jest resztą kwadratową
     """
-    if euler(b, p):
-        x = pow(b, (p + 1) // 4, p)
-        return x, p-x
+    if p % 4 == 3 and euler(b, p):
+        x = bin_pow(b, (p + 1) // 4, p)
+        return x, p - x
     return False, False
 
 

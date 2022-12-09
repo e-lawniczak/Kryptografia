@@ -1,6 +1,5 @@
 import random
-from projekt1.zad2_pow import pow
-
+from projekt1.zad2_pow import pow_mod, bin_pow
 
 
 def fermat(n, k=100):
@@ -13,7 +12,7 @@ def fermat(n, k=100):
     tests = [random.randint(0, 5000) for i in range(k)]
 
     for t in tests:
-        if pow(t, n - 1, n) != 1:
+        if bin_pow(t, n - 1, n) != 1:
             return False
     return True
 

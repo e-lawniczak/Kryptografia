@@ -2,7 +2,7 @@ import random
 import math
 
 
-def pow(x, k, n):
+def pow_mod(x, k, n):
     """
 
     :param x: podstawa
@@ -20,6 +20,16 @@ def pow(x, k, n):
         i -= 1
     return p
 
+def bin_pow(b, k, n):
+    y = 1
+    binary = list(reversed(bin(k)[2:]))
+    i = len(binary) - 1
+    while i >= 0:
+        y = (y ** 2) % n
+        if binary[i] == "1":
+            y = (y * b) % n
+        i = i - 1
+    return y
 
 if __name__ == '__main__':
     B = random.randint(2 ** 127, 2 ** 128)
@@ -29,5 +39,5 @@ if __name__ == '__main__':
     K = int(input("Podaj k: "))
     print(B)
 #    y = pow(B, K, N)
-    y = pow(1088, 16, 17)
+    y = pow_mod(1088, 16, 17)
     print(y)

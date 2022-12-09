@@ -2,6 +2,13 @@ import random
 
 
 def e_gcd(a, b):
+    """
+    rozszerzony algorytm euklidesa
+
+    :param a:
+    :param b:
+    :return: (element odwrotny, NWD)
+    """
     if a < b:
         t = a
         a = b
@@ -23,6 +30,22 @@ def e_gcd(a, b):
         return el_odwrotny, dzielnik
     return el_odwrotny % a, dzielnik
 
+def inverse(n, b):
+    A = n
+    B = b
+    U = 0
+    V = 1
+    while B != 0:
+        q = A // B
+        temp = A
+        A = B
+        B = temp + (-q * B)
+        temp = U
+        U = V
+        V = temp + (-q * V)
+    if U < 0:
+        return n + U
+    return U
 
 if __name__ == '__main__':
     n = int(input("Podaj n: "))
