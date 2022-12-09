@@ -20,8 +20,8 @@ def e_gcd(a, b):
     y = u
     el_odwrotny = v
     if el_odwrotny > 0:
-        return el_odwrotny
-    return el_odwrotny % a
+        return el_odwrotny, dzielnik
+    return el_odwrotny % a, dzielnik
 
 
 if __name__ == '__main__':

@@ -1,5 +1,6 @@
 import random
-from zad2 import pow
+from projekt1.zad2 import pow
+
 
 
 def fermat(n, k=10):
