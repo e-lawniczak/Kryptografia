@@ -1,5 +1,5 @@
 from projekt2.zad1_get_prime_generate_curve import curve
-from projekt2.zad2_pkt_na_Fp import random_point, all_points
+from projekt2.zad2_pkt_na_Fp import random_point, all_points, curve_eq
 from projekt2.zad3_pkt_przeciwny import pkt_przeciwny
 from projekt2.zad4_suma_P import sum_points, sum_points2
 
@@ -21,9 +21,8 @@ def sum_n_points(x, y, A, P, N):
             print("Wynik dodawania #{} to element przeciwny do P:{}\n{}R:{}".format(count + 1, (x, y), count + 1,
                                                                                     (x3, y3)))
             return None, None
-        if (x3, y3) not in points:
-            print("Punkt {} nie znajduje się w zbiorze punktów Fp. count:{}".format((x3, y3), count + 1))
-            print(points)
+        # if (y3**2) % P != curve_eq(x3,A,B,P) % P:
+        #     print("Punkt {} nie znajduje się w zbiorze punktów Fp. count:{}".format((x3, y3), count + 1))
         x1 = x3
         y1 = y3
     return x1, y1
@@ -31,7 +30,7 @@ def sum_n_points(x, y, A, P, N):
 
 if __name__ == '__main__':
     a, b, p = curve(11)
-    points = all_points(a, b, p)
+    # points = all_points(a, b, p)
     for i in range(100):
         print("\ni:{}  ===================================================\n".format(i))
         randomPoint1 = random_point(a, b, p)

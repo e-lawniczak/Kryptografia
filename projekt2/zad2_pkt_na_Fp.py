@@ -35,5 +35,9 @@ def random_point(A, B, P):
 
 
 if __name__ == '__main__':
-    a, b, p = curve(11)
-    print("A:{} \nB:{} \np:{} \nP:{}".format(a, b, p, random_point(a, b, p)))
+    a, b, p = curve()
+    print("A:{} \nB:{} \np:{} \nP:{}".format(a, b, p, random_point(10, 2, p)))
+    print(curve_eq(8,10,2,p))
+    print(0, 11)
+    print(bin_pow(0, (p + 1) // 4, p))
+    print(all_points(10,2,p))
