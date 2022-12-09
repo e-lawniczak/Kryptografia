@@ -1,4 +1,4 @@
-from projekt1 import zad1,zad2,zad3,zad4,zad5
+from projekt1 import zad1_euklides,zad2_pow,zad3_fermat,zad4_euler,zad5_reszty_kw
 
 
 if __name__ == '__main__':

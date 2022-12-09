@@ -3,6 +3,13 @@ import math
 
 
 def pow(x, k, n):
+    """
+
+    :param x: podstawa
+    :param k: potęga zamieniana na binarną
+    :param n: liczba do modulo
+    :return: p - liczba x^k % n
+    """
     b_k = bin(k)
     i = len(b_k) - 3
     p = 1

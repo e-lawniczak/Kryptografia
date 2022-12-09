@@ -1,9 +1,15 @@
 import random
-from projekt1.zad2 import pow
+from projekt1.zad2_pow import pow
 
 
 
-def fermat(n, k=10):
+def fermat(n, k=100):
+    """
+
+    :param n: podejrzana liczba pierwsza
+    :param k: liczba testów fermata do wykonania domyślnie 100
+    :return: True jeśli liczba jest pierwsza, False jeśli nie jest
+    """
     tests = [random.randint(0, 5000) for i in range(k)]
 
     for t in tests:
