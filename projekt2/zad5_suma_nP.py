@@ -15,7 +15,7 @@ def sum_n_points(x, y, A, P, N):
     y3 = None
     count = 0
     while count < N - 1:
-        (x3, y3) = sum_points(x1, y1, x2, y2, A, P)
+        (x3, y3) = sum_points2(x1, y1, x2, y2, A, P)
         count += 1
         if (x3, y3) == pkt_przeciwny(x, y, P):
             print("Wynik dodawania #{} to element przeciwny do P:{}\n{}R:{}".format(count + 1, (x, y), count + 1,
@@ -28,8 +28,24 @@ def sum_n_points(x, y, A, P, N):
     return x1, y1
 
 
+def sum_n_points_bin(x, y, A, P, N):
+    Q = (x,y)
+    x1 = x
+    y1 = y
+    x2 = x
+    y2 = y
+    binary = list(reversed(bin(N)[2:]))
+    i = len(binary) - 1
+    while i >= 0:
+        Q = sum_points2(Q[0], Q[1], x1, y1, A, P)
+        if binary[i] == "1":
+            Q = sum_points2(Q[0], Q[1], Q[0], Q[1], A, P)
+        i = i - 1
+    return Q
+
+
 if __name__ == '__main__':
-    a, b, p = curve(11)
+    a, b, p = curve()
     # points = all_points(a, b, p)
     for i in range(100):
         print("\ni:{}  ===================================================\n".format(i))

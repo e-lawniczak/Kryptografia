@@ -8,11 +8,11 @@ def getPrimeNumber(bits):
     :param bits: liczba bitów
     :return: liczba pierwsza o liczbie bitów bits
     """
-    k = random.randint(2 ** bits, 2 ** bits + 1)
+    k = random.randint(2 ** bits, 2 ** (bits + 1))
     P = 4 * k + 3
     while not fermat(P) and P % 3 != 4:
         P = 4 * k + 3
-        k = random.randint(2 ** 300, 2 ** 301)
+        k = random.randint(2 ** bits, 2 ** (bits + 1))
     return P
 
 
@@ -32,7 +32,7 @@ def curve(p=-1):
     """
     P = 1
     if p == -1:
-        P = getPrimeNumber(300)
+        P = getPrimeNumber(500)
     else:
         P = p
 

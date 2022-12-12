@@ -1,6 +1,6 @@
 from projekt1.zad2_pow import pow_mod, bin_pow
 from projekt1.zad4_euler import euler
-from projekt1.zad5_reszty_kw import sqr
+from projekt1.zad5_reszty_kw import sqr, sqr_e
 from projekt2.zad1_get_prime_generate_curve import curve
 import random
 
@@ -14,7 +14,7 @@ def all_points(A, B, P):
     for i in range(P):
         f = curve_eq(i, A, B, P)
         if euler(f, P):
-            (y1, y2) = sqr(f, P)
+            (y1, y2) = sqr_e(f, P)
             points.append((i, y1))
             points.append((i, y2))
     return points
@@ -25,11 +25,11 @@ def random_point(A, B, P):
         raise Exception("p%4 != 3")
     x = random.randint(0, P - 1)
     y2 = curve_eq(x, A, B, P)
-    while not euler(y2, P):
+    while bin_pow(y2, (P - 1) // 2, P) == -1:
         x = random.randint(0, P - 1)
         y2 = curve_eq(x, A, B, P)
 
-    plus_y, minus_y = sqr(y2, P)
+    plus_y, minus_y = sqr_e(y2, P)
     # print("Wylosowane punkty ({},{}), ({},{}) nad E/F{}".format(x, plus_y, x, minus_y, P))
     return x, plus_y
 
