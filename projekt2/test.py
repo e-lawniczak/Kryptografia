@@ -12,27 +12,33 @@ import random
 
 
 def test():
-    a, b, p = curve()
+    a, b, p = curve(1000)
     Q = random_point(a, b, p)
     Px = Q[0]
     Py = Q[1]
-    print("E: ", a, b, p)
-    print("P: ", Px, Py)
+    print("E: \nA:{}\nB:{}\np:{}".format(a, b, p))
+    print("P: {}".format((Px, Py)))
 
     x_a = random.randint(1, p // 2)
     x_b = random.randint(1, p // 2)
     print("x_a:", x_a)
     print("x_b:", x_b)
 
-    Q_ax, Q_ay = sum_n_points_bin(Px, Py, a, p, x_a)
-    Q_bx, Q_by = sum_n_points_bin(Px, Py, a, p, x_b)
+    Q_ax, Q_ay = sub_sum(Px, Py, a, p, x_a)
+    Q_bx, Q_by = sub_sum(Px, Py, a, p, x_b)
+    print("Qa: {}".format((Q_ax, Q_ay)))
+    print("Qb: {}".format((Q_bx, Q_by)))
 
-    S_a = sum_n_points_bin(Q_bx, Q_by, a, p, x_a)
-    S_b = sum_n_points_bin(Q_ax, Q_ay, a, p, x_b)
+    S_a = sub_sum(Q_bx, Q_by, a, p, x_a)
+    S_b = sub_sum(Q_ax, Q_ay, a, p, x_b)
 
     print("S_a == S_b: ", S_a == S_b)
     print("S_a: ", S_a)
     print("S_b: ", S_b)
+
+
+def sub_sum(X, Y, A, P, N):
+    return sum_n_points_bin(X, Y, A, P, N)
 
 
 if __name__ == '__main__':
@@ -58,13 +64,13 @@ if __name__ == '__main__':
     
     """
     test()
-    # a, b, p = curve(11)
-    # n = 12
+    # a, b, p = curve(100,11)
+    # n = 6
     # (x1, y1) = random_point(a, b, p)
     # (x2, y2) = random_point(a, b, p)
     # (x1, minus_y1) = pkt_przeciwny(x1, y1, p)
-    # (x3, y3) = sum_points(x1, y1, x2, y2, a, p)
-    # (x, y) = sum_points(x1, y1, x1, minus_y1, a, p)
+    # (x3, y3) = sum_points2(x1, y1, x2, y2, a, p)
+    # (x, y) = sum_points2(x1, y1, x1, minus_y1, a, p)
     # (x4, y4) = sum_n_points(x1, y1, a, p, n)
     # (x5, y5) = sum_n_points_bin(x1, y1, a, p, n)
     # # a = 1 b = 7, P(5,4) Q (6,3)

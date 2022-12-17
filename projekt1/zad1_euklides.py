@@ -27,10 +27,11 @@ def e_gcd(a, b):
     y = u
     el_odwrotny = v
     if el_odwrotny > 0:
-        return el_odwrotny, dzielnik
-    return el_odwrotny % a, dzielnik
+        return el_odwrotny
+    return el_odwrotny % a
 
-def inverse(n, b):
+
+def inverse_2(n, b):
     A = n
     B = b
     U = 0
@@ -46,6 +47,31 @@ def inverse(n, b):
     if U < 0:
         return n + U
     return U
+
+
+def inverse(A, B):
+    a, b, = A, B
+    x, y = 0, 1
+    new_x, new_y = 1, 0
+    while True:
+        q = b // a
+        buff_x = x
+        buff_y = y
+        x, y = new_x, new_y
+        new_x = buff_x - q * new_x
+        new_y = buff_y - q * new_y
+        buff_a = a
+        buff_b = b
+        b = buff_a
+        a = buff_b - q * a
+
+        if (a == 0):
+            break
+    data = [new_x, new_y, a, x, y, b]
+    if x < 0:
+        return x + B
+    return x
+
 
 if __name__ == '__main__':
     n = int(input("Podaj n: "))

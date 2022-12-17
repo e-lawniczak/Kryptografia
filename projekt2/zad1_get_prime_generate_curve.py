@@ -16,6 +16,8 @@ def getPrimeNumber(bits):
     return P
 
 
+
+
 def delta_E(A, B, p):
     """
     Oblicza wyróżnik krzywej eliptycznej
@@ -24,15 +26,16 @@ def delta_E(A, B, p):
     return ((4 * (A ** 3)) + (27 * B ** 2)) % p
 
 
-def curve(p=-1):
+def curve(n=300, p=-1):
     """
     Generuję krzywą eliptyczną
+    :param n: liczba bitów liczby pierwszej
     :param p: liczba pierwsza do ciała Fp, jeśli nie zostanie podana wybrana zostanie losowa liczba
     :return: parametry A, B, p krzywej
     """
     P = 1
     if p == -1:
-        P = getPrimeNumber(500)
+        P = getPrimeNumber(n)
     else:
         P = p
 
@@ -46,5 +49,6 @@ def curve(p=-1):
 
 
 if __name__ == '__main__':
-    a, b, p = curve()
+    a, b, p = curve(1000)
     print("A:{}\nB:{}\np:{}".format(a, b, p))
+
