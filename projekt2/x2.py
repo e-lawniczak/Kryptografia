@@ -1,11 +1,12 @@
 import random
-import miniprojekt_1
+from projekt2 import x1
+from projekt2.zad1_get_prime_generate_curve import getPrimeNumber
 
 
 class EllipticCurve():
     INFTY = 'infty'
 
-    def __init__(self, p) -> None:
+    def __init__(self, p, x=1) -> None:
         self.p = p
         self.A = 0
         self.B = 1
@@ -31,7 +32,7 @@ class EllipticCurve():
     def get_random_point(self):
         x = random.randint(1, self.p-1)
         equation = (x**3 + self.A*x + self.B) % self.p
-        y = miniprojekt_1.pierwiastek_kwadratowy(equation, self.p)
+        y = x1.pierwiastek_kwadratowy(equation, self.p)
         if y:
             return (x, y)
         else:
@@ -49,13 +50,13 @@ class EllipticCurve():
         if self.INFTY in [x_q, y_q]:
             return x_p, y_p
         if x_p != x_q:
-            s = ((y_p - y_q) * miniprojekt_1.odwrotnosc_euklides((x_p - x_q) % self.p, self.p)) % self.p
+            s = ((y_p - y_q) * x1.odwrotnosc_euklides((x_p - x_q) % self.p, self.p)) % self.p
             x_r = (s**2 - x_p - x_q) % self.p
             y_r = (s*(x_p - x_r) - y_p) % self.p
             return x_r, y_r
         if x_p == x_q and y_p == y_q:
-            s = (((3* miniprojekt_1.binary_power(x_p, 2, self.p)) % self.p + self.A) * miniprojekt_1.odwrotnosc_euklides((2*y_p) % self.p, self.p)) % self.p 
-            x_r = ((miniprojekt_1.binary_power(s, 2, self.p) % self.p) - 2*x_p % self.p) % self.p
+            s = (((3 * x1.binary_power(x_p, 2, self.p)) % self.p + self.A) * x1.odwrotnosc_euklides((2 * y_p) % self.p, self.p)) % self.p
+            x_r = ((x1.binary_power(s, 2, self.p) % self.p) - 2 * x_p % self.p) % self.p
             y_r = (s*(x_p - x_r) - y_p) % self.p
             return x_r, y_r
         return self.INFTY, self.INFTY
@@ -143,16 +144,23 @@ class EllipticCurve():
 
 # # zadanie 5
 # print('Zadanie 5 Przykład 1:')
-# zad5_curve = EllipticCurve(11)
-# zad5_curve.generate_specific_elliptic_curve(11, 3, 5)
-# x, y = zad5_curve.wielokrotnosc(0, 4, 4)
-# print(x, y)
-# assert x == 10 and y == 1
-# print()
+zad5_curve = EllipticCurve(11)
+zad5_curve.generate_specific_elliptic_curve(11, 3, 5)
+w, y = zad5_curve.wielokrotnosc(0, 4, 4)
+print(w, y)
+assert w == 10 and y == 1
+print()
 
 # print('Przykład 2:')
-# zad5_curve.generate_specific_elliptic_curve(1298074214633706907132624082305003, 228534005990621198360294597781867, 569902189632523536847978118572132)
-# x, y = zad5_curve.wielokrotnosc(149381772199891494705202718572565, 409260229456564272828054179242535, 1298074214633706907132624082305000)
-# print(x, y)
-# assert x == 986078474331561338747222244192406 and y == 762094002267112631659808038096452
+zad5_curve.generate_specific_elliptic_curve(1298074214633706907132624082305003, 228534005990621198360294597781867, 569902189632523536847978118572132)
+w, y = zad5_curve.wielokrotnosc(149381772199891494705202718572565, 409260229456564272828054179242535, 1298074214633706907132624082305000)
+print(w, y)
+assert w == 986078474331561338747222244192406 and y == 762094002267112631659808038096452
+
+m = getPrimeNumber(800)
+zad5_curve = EllipticCurve(m)
+zad5_curve.generate_random_elliptic_curve()
+w, y = zad5_curve.get_random_point()
+u, i = zad5_curve.wielokrotnosc(w,y, m)
+print(u,i)
 

@@ -17,7 +17,7 @@ def test():
     Px = Q[0]
     Py = Q[1]
     print("E: \nA:{}\nB:{}\np:{}".format(a, b, p))
-    print("P: {}".format((Px, Py)))
+    print("P:{}".format((Px, Py)))
 
     x_a = random.randint(1, p // 2)
     x_b = random.randint(1, p // 2)
